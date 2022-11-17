@@ -1,5 +1,5 @@
 {% set name = "pisces" %}
-{% set version = "0.3.2" %}
+{% set version = "0.4.0" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pisces-{{ version }}.tar.gz
-  sha256: 9496b9f613348952db07121675fe32f45e23740c9d4e3885738b24ce3778ad66
+  sha256: 68f7638a234a55d3522ac4fb46aa2366a7b09eaa08f12d45416b4461ca4b0634
 
 build:
   number: 0
@@ -26,7 +26,7 @@ requirements:
     - numpy
     - obspy >=1.0
     - python >=3.7,<3.8
-    - sqlalchemy >1.0,<1.4 
+    - sqlalchemy >1.0,<1.4
 
 test:
   imports:
