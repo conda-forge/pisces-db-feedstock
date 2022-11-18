@@ -20,13 +20,13 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.7,<3.8
+    - python >=3.7
   run:
     - click
     - numpy
     - obspy >=1.0
-    - python >=3.7,<3.8
-    - sqlalchemy >1.0,<1.4
+    - python >=3.7
+    - sqlalchemy >=1.4
 
 test:
   imports:
