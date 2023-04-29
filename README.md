@@ -1,11 +1,11 @@
-About pisces-db
-===============
+About pisces-db-feedstock
+=========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pisces-db-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/LANL-Seismoacoustics/pisces
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pisces-db-feedstock/blob/main/LICENSE.txt)
 
 Summary: A Practical Seismological Database Library in Python.
 
