@@ -1,5 +1,5 @@
 {% set name = "pisces" %}
-{% set version = "0.4.2" %}
+{% set version = "0.4.3" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pisces-{{ version }}.tar.gz
-  sha256: b8f67ca813664e316403a5682081c5c0cc76a6bbbbb061cacd950fa164158ee1
+  sha256: 217a7d5c82e0dc627316d38092e6c3d02475c283ea22066413221f3f9c5adc28
 
 build:
   number: 0
