@@ -24,7 +24,7 @@ requirements:
   run:
     - click
     - numpy
-    - obspy >=1.0
+    - obspy >=1.4.1
     - python >={{ python_min }}
     - sqlalchemy >=1.4
 
