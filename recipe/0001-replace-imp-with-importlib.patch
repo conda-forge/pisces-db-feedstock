@@ -1,0 +1,33 @@
+--- a/pisces/commands/sac2db.py
++++ b/pisces/commands/sac2db.py
+@@ -6,7 +6,8 @@
+ import sys
+ import glob
+ import argparse
+-import imp
++import importlib.machinery
++import importlib.util
+ 
+ from sqlalchemy import create_engine
+ import sqlalchemy.exc as exc
+@@ -37,8 +38,18 @@
+                 raise ValueError(msg)
+             pth = pth.split(os.path.sep)
+             modname = pth.pop(-1)
+-            f, pathname, descr = imp.find_module(modname, pth)
+-            mod = imp.load_module(modname, f, pathname, descr)
++            spec = importlib.machinery.PathFinder.find_spec(
++                modname, [os.path.abspath(path) for path in pth]
++            )
++            if spec is None or spec.loader is None:
++                raise ImportError("No module named {!r}".format(modname))
++            mod = importlib.util.module_from_spec(spec)
++            sys.modules[modname] = mod
++            try:
++                spec.loader.exec_module(mod)
++            except BaseException:
++                sys.modules.pop(modname, None)
++                raise
+             plugin_functions.append(getattr(mod, fn))
+ 
+     return plugin_functions
