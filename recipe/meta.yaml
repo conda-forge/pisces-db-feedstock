@@ -1,5 +1,5 @@
 {% set name = "pisces" %}
-{% set version = "0.4.5.3" %}
+{% set version = "0.4.9" %}
 
 
 package:
@@ -7,10 +7,10 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pisces-{{ version }}.tar.gz
-  sha256: 1a70b6bb51d641793b28670a3a42b2d4b794f2f192017784d419a8f5ae0bacb3
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/pisces-{{ version }}.tar.gz
+  sha256: 4b63b9f62dd5cf15773be7e48a463f7aaf8c1df9a836ec6cf0f5447ba6649dbd
   patches:
-    - 0001-replace-imp-with-importlib.patch
+    - 0001-fix-plugin-loading.patch
 
 build:
   number: 0
@@ -23,7 +23,7 @@ requirements:
   host:
     - pip
     - python {{ python_min }}
-    - setuptools
+    - setuptools >=61
   run:
     - click
     - numpy
