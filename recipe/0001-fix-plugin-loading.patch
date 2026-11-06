@@ -1,0 +1,30 @@
+Subject: [PATCH] Preserve relative plugin paths and package imports
+
+Resolve plugin search paths before caching them and register modules before
+executing package code so relative imports can find the parent package.
+Remove failed imports from the module cache.
+
+--- a/pisces/commands/sac2db.py
++++ b/pisces/commands/sac2db.py
+@@ -33,11 +33,18 @@
+                 raise ValueError(msg)
+             pth = pth.split(os.path.sep)
+             modname = pth.pop(-1)
+-            spec = importlib.machinery.PathFinder().find_spec(modname, pth)
+-            if spec is None:
++            spec = importlib.machinery.PathFinder().find_spec(
++                modname, [os.path.abspath(path) for path in pth]
++            )
++            if spec is None or spec.loader is None:
+                 raise ImportError(f"Can't find module {modname} in {pth}")
+             mod = importlib.util.module_from_spec(spec)
+-            spec.loader.exec_module(mod)
++            sys.modules[modname] = mod
++            try:
++                spec.loader.exec_module(mod)
++            except BaseException:
++                sys.modules.pop(modname, None)
++                raise
+             plugin_functions.append(getattr(mod, fn))
+ 
+     return plugin_functions

@@ -10,7 +10,7 @@ source:
   url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/pisces-{{ version }}.tar.gz
   sha256: 4b63b9f62dd5cf15773be7e48a463f7aaf8c1df9a836ec6cf0f5447ba6649dbd
   patches:
-    - 0001-replace-imp-with-importlib.patch
+    - 0001-fix-plugin-loading.patch
 
 build:
   number: 0
@@ -23,7 +23,7 @@ requirements:
   host:
     - pip
     - python {{ python_min }}
-    - setuptools
+    - setuptools >=61
   run:
     - click
     - numpy
